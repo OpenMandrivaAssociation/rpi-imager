@@ -7,7 +7,6 @@ License:        Apache-2.0
 URL:            https://github.com/raspberrypi/rpi-imager
 Source0:        https://github.com/raspberrypi/rpi-imager/archive/v%{version}/%{name}-%{version}.tar.gz
  
-
 BuildRequires:  make
 BuildRequires:  cmake
 BuildRequires:  cmake(Qt5LinguistTools)
@@ -17,6 +16,9 @@ BuildRequires:  pkgconfig(libcurl)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(Qt5QuickControls2)
 BuildRequires:  pkgconfig(Qt5Svg)
+BuildRequires:  pkgconfig(zlib)
+BuildRequires:  pkgconfig(liblzma)
+BuildRequires:  pkgconfig(gnutls)
  
 Requires:       hicolor-icon-theme
 Recommends:     udisks2
