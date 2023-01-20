@@ -34,6 +34,7 @@ write custom disk images and format SD cards.
 
 %build
 pushd src
+export LDFLAGS="%{optflags} -lcurl"
 %cmake
 %make_build
 
