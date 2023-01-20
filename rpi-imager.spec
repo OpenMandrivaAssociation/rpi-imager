@@ -31,12 +31,12 @@ write custom disk images and format SD cards.
 %autosetup -p1
 
 %build
-
+pushd src
 %cmake
 %make_build
 
 %install
-
+pushd src
 %make_install -C build
 desktop-file-install \
     --add-category="X-GNOME-Utilities" \
