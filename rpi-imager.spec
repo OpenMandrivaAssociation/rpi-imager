@@ -1,6 +1,6 @@
 Name:           rpi-imager
 Version:        1.7.4
-Release:        1
+Release:        2
 Summary:        Graphical user-interface to write disk images and format SD cards
 Group:		      File tools 
 License:        Apache-2.0
