@@ -13,6 +13,7 @@ BuildRequires:  cmake(Qt5LinguistTools)
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  pkgconfig(libarchive)
 BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(Qt5QuickControls2)
 BuildRequires:  pkgconfig(Qt5Svg)
