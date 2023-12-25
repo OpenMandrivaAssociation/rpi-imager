@@ -20,6 +20,7 @@ BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(gnutls)
+BuildRequires:  util-linux
  
 Requires:       hicolor-icon-theme
 Recommends:     udisks2
