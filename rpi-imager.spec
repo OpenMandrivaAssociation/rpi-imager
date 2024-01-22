@@ -43,9 +43,7 @@ export LDFLAGS="%{optflags} -lcurl"
 %install
 pushd src
 %make_install -C build
-desktop-file-install \
-    --add-category="X-GNOME-Utilities" \
-    %{buildroot}%{_datadir}/applications/%{name}.desktop
+
  
  
 %files
