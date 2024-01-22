@@ -48,7 +48,7 @@ pushd src
  
 %files
 %{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/org.raspberrypi.rpi-imager.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_metainfodir}/%{name}.metainfo.xml
 %license license.txt
