@@ -1,5 +1,5 @@
 Name:           rpi-imager
-Version:        1.8.5
+Version:        1.9.0
 Release:        1
 Summary:        Graphical user-interface to write disk images and format SD cards
 Group:		      File tools 
@@ -9,14 +9,18 @@ Source0:        https://github.com/raspberrypi/rpi-imager/archive/v%{version}/%{
  
 BuildRequires:  make
 BuildRequires:  cmake
-BuildRequires:  cmake(Qt5LinguistTools)
-BuildRequires:  qt5-qtbase-devel
+#BuildRequires:  cmake(Qt5LinguistTools)
+#BuildRequires:  qt5-qtbase-devel
 BuildRequires:  pkgconfig(libarchive)
 BuildRequires:  pkgconfig(libcurl)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(openssl)
-BuildRequires:  pkgconfig(Qt5QuickControls2)
-BuildRequires:  pkgconfig(Qt5Svg)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(gnutls)
@@ -44,8 +48,6 @@ export LDFLAGS="%{optflags} -lcurl"
 pushd src
 %make_install -C build
 
- 
- 
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/org.raspberrypi.rpi-imager.desktop
