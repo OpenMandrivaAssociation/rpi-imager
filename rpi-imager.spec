@@ -42,6 +42,7 @@ BuildRequires:	atomic-devel
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	cmake(Qt6ExamplesAssetDownloaderPrivate)
+BuildRequires:	cmake(Qt6QmlAssetDownloaderPrivate)
 BuildRequires:	cmake(vulkanheaders)
 BuildRequires:	cmake(zstd)
 BuildRequires:  desktop-file-utils
@@ -66,7 +67,6 @@ BuildRequires:	pkgconfig(Qt6Network)
 BuildRequires:	pkgconfig(Qt6Qml)
 BuildRequires:	pkgconfig(Qt6QmlCore)
 BuildRequires:	pkgconfig(Qt6QmlAssetDownloader)
-BuildRequires:	pkgconfig(Qt6QmlAssetDownloaderPrivate)
 BuildRequires:	pkgconfig(Qt6QmlNetwork)
 BuildRequires:	pkgconfig(Qt6Quick)
 BuildRequires:	pkgconfig(Qt6QuickControls2Material)
