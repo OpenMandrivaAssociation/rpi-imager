@@ -2,7 +2,7 @@
 
 Name:			rpi-imager
 Version:		2.0.6
-Release:		1
+Release:		2
 Summary:		Graphical user-interface to write disk images and format SD cards
 Group:			File tools
 License:		Apache-2.0
@@ -41,6 +41,8 @@ BuildRequires:  appstream-util
 BuildRequires:	atomic-devel
 BuildRequires:	cmake
 BuildRequires:	ninja
+BuildRequires:	cmake(Qt6ExamplesAssetDownloaderPrivate)
+BuildRequires:	cmake(vulkanheaders)
 BuildRequires:	cmake(zstd)
 BuildRequires:  desktop-file-utils
 BuildRequires:	pkgconfig(gnutls)
@@ -62,7 +64,9 @@ BuildRequires:	pkgconfig(Qt6LabsSynchronizer)
 BuildRequires:	pkgconfig(Qt6Linguist)
 BuildRequires:	pkgconfig(Qt6Network)
 BuildRequires:	pkgconfig(Qt6Qml)
+BuildRequires:	pkgconfig(Qt6QmlCore)
 BuildRequires:	pkgconfig(Qt6QmlAssetDownloader)
+BuildRequires:	pkgconfig(Qt6QmlAssetDownloaderPrivate)
 BuildRequires:	pkgconfig(Qt6QmlNetwork)
 BuildRequires:	pkgconfig(Qt6Quick)
 BuildRequires:	pkgconfig(Qt6QuickControls2Material)
