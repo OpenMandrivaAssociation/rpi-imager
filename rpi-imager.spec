@@ -40,6 +40,7 @@ Patch20:	https://github.com/raspberrypi/rpi-imager/pull/1505/commits/25a477e9ef8
 BuildRequires:  appstream-util
 BuildRequires:	atomic-devel
 BuildRequires:	cmake
+BuildRequires:	ninja
 BuildRequires:	cmake(zstd)
 BuildRequires:  desktop-file-utils
 BuildRequires:	pkgconfig(gnutls)
