@@ -1,0 +1,11 @@
+diff -urN rpi-imager-2.0.6/src/wizard/WritingStep.qml rpi-imager-2.0.6-fix-missing-import/src/wizard/WritingStep.qml
+--- rpi-imager-2.0.6/src/wizard/WritingStep.qml	2026-01-22 14:31:04.000000000 +0000
++++ rpi-imager-2.0.6-fix-missing-import/src/wizard/WritingStep.qml	2026-02-15 17:14:51.904424304 +0000
+@@ -5,6 +5,7 @@
+ 
+ import QtQuick
+ import QtQuick.Controls
++import QtQuick.Controls.Material
+ import QtQuick.Layouts
+ import "../qmlcomponents"
+ 

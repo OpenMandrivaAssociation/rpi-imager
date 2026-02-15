@@ -1,0 +1,28 @@
+diff -urN rpi-imager-2.0.6/src/cmake/GenerateTimezones.cmake rpi-imager-2.0.6-fix-broken-timezones/src/cmake/GenerateTimezones.cmake
+--- rpi-imager-2.0.6/src/cmake/GenerateTimezones.cmake	2026-01-22 14:31:04.000000000 +0000
++++ rpi-imager-2.0.6-fix-broken-timezones/src/cmake/GenerateTimezones.cmake	2026-02-12 22:53:17.068943415 +0000
+@@ -42,7 +42,7 @@
+     message(STATUS "Attempting to use fallback timezone list...")
+     
+     # Try to find a fallback timezone file
+-    set(FALLBACK_FILE "${SOURCE_DIR}/timezones.txt.fallback")
++    set(FALLBACK_FILE "${SOURCE_DIR}/timezones.txt")
+     if(EXISTS "${FALLBACK_FILE}")
+         message(STATUS "Using fallback timezone file: ${FALLBACK_FILE}")
+         file(READ "${FALLBACK_FILE}" fallback_content)
+@@ -141,7 +141,7 @@
+ message(STATUS "Generated ${num_timezones} timezone entries in ${OUTPUT_FILE}")
+ 
+ # Compare with fallback file if it exists
+-set(FALLBACK_FILE "${SOURCE_DIR}/timezones.txt.fallback")
++set(FALLBACK_FILE "${SOURCE_DIR}/timezones.txt")
+ if(EXISTS "${FALLBACK_FILE}")
+     message(STATUS "Comparing with existing timezone list...")
+     
+@@ -231,4 +231,4 @@
+ # Clean up downloaded archive to save space
+ file(REMOVE "${TZDATA_ARCHIVE}")
+ 
+-message(STATUS "Timezone generation completed successfully")
+\ No newline at end of file
++message(STATUS "Timezone generation completed successfully")
