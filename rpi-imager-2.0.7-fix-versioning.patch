@@ -1,0 +1,28 @@
+diff -urN rpi-imager-2.0.7/src/cmake/GenerateVersion.cmake rpi-imager-2.0.7-fix-versioning/src/cmake/GenerateVersion.cmake
+--- rpi-imager-2.0.7/src/cmake/GenerateVersion.cmake	2026-03-25 14:48:22.000000000 +0000
++++ rpi-imager-2.0.7-fix-versioning/src/cmake/GenerateVersion.cmake	2026-03-27 18:56:26.139185253 +0000
+@@ -6,24 +6,8 @@
+ #   SOURCE_DIR       — repo root (for git describe)
+ #   OUTPUT_DIR       — directory for generated files
+ 
+-find_package(Git QUIET)
+-
+ set(VERSION_STR "0.0.0-unknown")
+ 
+-if(GIT_EXECUTABLE)
+-    execute_process(
+-        COMMAND "${GIT_EXECUTABLE}" describe --tags --always --dirty
+-        WORKING_DIRECTORY "${SOURCE_DIR}"
+-        OUTPUT_VARIABLE GIT_DESCRIBE
+-        OUTPUT_STRIP_TRAILING_WHITESPACE
+-        ERROR_QUIET
+-        RESULT_VARIABLE GIT_RESULT
+-    )
+-    if(GIT_RESULT EQUAL 0 AND GIT_DESCRIBE)
+-        set(VERSION_STR "${GIT_DESCRIBE}")
+-    endif()
+-endif()
+-
+ # Parse numeric version components (e.g. v2.0.0-rc4-60-geac7c2f0 → 2, 0, 0)
+ string(REGEX MATCH "^v?([0-9]+)\\.([0-9]+)\\.([0-9]+)" _match "${VERSION_STR}")
+ if(_match)

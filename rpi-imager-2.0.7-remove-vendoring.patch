@@ -1,0 +1,72 @@
+diff -urN rpi-imager-2.0.7/src/CMakeLists.txt rpi-imager-2.0.7-remove-vendoring/src/CMakeLists.txt
+--- rpi-imager-2.0.7/src/CMakeLists.txt	2026-03-25 14:48:22.000000000 +0000
++++ rpi-imager-2.0.7-remove-vendoring/src/CMakeLists.txt	2026-03-27 17:02:51.553864002 +0000
+@@ -155,26 +155,23 @@
+ set(BUILD_STATIC_LIBS ON)
+ set(BUILD_SHARED_LIBS OFF)
+ 
+-include(FetchContent)
+-
+ # Bundled liblzma
+-include(dependencies/xz.cmake)
++find_package(LibLZMA 5.8.1 REQUIRED)
+ 
+ # Bundled zstd
+-include(dependencies/zstd.cmake)
++find_package(zstd 1.5.7 REQUIRED)
+ 
+ # Remote nghttp2
+-include(dependencies/nghttp2.cmake)
++find_package(nghttp2 1.68.0 REQUIRED)
+ 
+ # Bundled yescrypt
+ include(dependencies/yescrypt.cmake)
+ 
+-
+ # Bundled zlib
+-include(dependencies/zlib.cmake)
++find_package(ZLIB REQUIRED)
+ 
+ # Bundled libarchive
+-include(dependencies/libarchive.cmake)
++find_package(LibArchive 3.8.4 REQUIRED)
+ 
+ # libcurl
+ if(APPLE)
+@@ -188,12 +185,12 @@
+     # Note: No need to find OpenSSL on macOS - we use native Security.framework
+     # for RSA operations and CommonCrypto for hashing
+ else()
+-    include(dependencies/curl.cmake)
++    find_package(CURL 8.17.0 REQUIRED)
+ endif()
+ 
+-
+ # Bundled libusb (for rpiboot Compute Module support)
+-include(dependencies/libusb.cmake)
++find_package(PkgConfig REQUIRED)
++pkg_check_modules(libusb REQUIRED libusb-1.0)
+ 
+ # Add dependencies
+ if (APPLE)
+@@ -551,7 +548,7 @@
+     include(linux/PlatformPackaging.cmake)
+ endif()
+ 
+-add_dependencies(${PROJECT_NAME} zlibstatic yescrypt usb-1.0-static)
++add_dependencies(${PROJECT_NAME} yescrypt)
+ include_directories(${CURL_INCLUDE_DIR} ${LibArchive_INCLUDE_DIR} ${LIBLZMA_INCLUDE_DIRS} ${LIBDRM_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS} ${ZSTD_INCLUDE_DIR} ${YESCRYPT_INCLUDE_DIR} ${LIBUSB_INCLUDE_DIR})
+ 
+ # Link different Qt components based on build type
+diff -urN rpi-imager-2.0.7/src/rpiboot/libusb_transport.cpp rpi-imager-2.0.7-remove-vendoring/src/rpiboot/libusb_transport.cpp
+--- rpi-imager-2.0.7/src/rpiboot/libusb_transport.cpp	2026-03-25 14:48:22.000000000 +0000
++++ rpi-imager-2.0.7-remove-vendoring/src/rpiboot/libusb_transport.cpp	2026-03-27 17:16:17.259770180 +0000
+@@ -4,7 +4,7 @@
+  */
+ 
+ #include "libusb_transport.h"
+-#include <libusb.h>
++#include <libusb-1.0/libusb.h>
+ #include <cstring>
+ #include <stdexcept>
+ #include <QDebug>

@@ -1,8 +1,6 @@
-%define tzdata_version 2025c
-
 Name:			rpi-imager
-Version:		2.0.6
-Release:		2
+Version:		2.0.7
+Release:		1
 Summary:		Graphical user-interface to write disk images and format SD cards
 Group:			File tools
 License:		Apache-2.0
@@ -17,25 +15,30 @@ Source0:		https://github.com/raspberrypi/rpi-imager/archive/v%{version}/%{name}-
 # NOTE Upstream rapsberrypi foundation developers are heavily pushing AppImage
 # NOTE over distrubution provided software.
 # NOTE This is antithetical to core Linux and OSS principles of user choice.
-# NOTE As described by one of their developers in git issues it as a brand-protective
+# NOTE As described by one of their developers in git issues it as a "brand-protective"
 # NOTE choice they made over users maintaining their software freedoms.
 ##################################
 # NOTE Patch0 will need checked and refactored on each upstream release to ensure-
 # NOTE we can use our system libs and avoid using upstream forced vendored packages.
-Patch0:		rpi-imager-2.0.6-remove-vendoring.patch
+Patch0:	rpi-imager-2.0.7-remove-vendoring.patch
+# This patches out upstream dirty versioning, use with sed line in prep to-
+# overwrite the string directly.
+Patch1:	rpi-imager-2.0.7-fix-versioning.patch
 ##################################
-# Upstream are shipping with cmake files for timezone generation which point
-# to non-existant files as fallbacks for when generation fails - which it does
-# in CI isolated builds, fix those so rpi-imager can set timezones for the
-# the images it creates.
+# NOTE Two weeks after patch submission upstream used an LLM on their repo to
+# NOTE absorb MR#1514 into their own patch without attribution!
 # Patch submitted upstream: https://github.com/raspberrypi/rpi-imager/pull/1514
-Patch1: rpi-imager-2.0.6-fix-broken-timezones.patch
+# Patch1: rpi-imager-2.0.6-fix-broken-timezones.patch
 # Fix a missing import in WritingStep.qml causing a Qt exception for Non-attached object.
 # Patch submitted upstream: https://github.com/raspberrypi/rpi-imager/pull/1515
-Patch2: rpi-imager-2.0.6-fix-missing-import.patch
-
-# QML: fix property name mismatch in ImFileDialog https://github.com/raspberrypi/rpi-imager/pull/1505
-Patch20:	https://github.com/raspberrypi/rpi-imager/pull/1505/commits/25a477e9ef8d25ff17dfb3f331c7559eaf812f53.patch
+Patch2:	rpi-imager-2.0.6-fix-missing-import.patch
+# NOTE Upstream closed MR#1515 without consideration due to nonsensesical-
+# NOTE reasons of not "attaching a bug report" even though the PR itself is
+# NOTE a bug report and a patch to fix a Qt runtime exception.
+# NOTE Bug still exists in 2.0.7.
+################################################################################
+# NOTE Consider rpi-imager as hostile towards Linux distributions going forward.
+################################################################################
 
 BuildRequires:  appstream-util
 BuildRequires:	atomic-devel
@@ -54,6 +57,7 @@ BuildRequires:	pkgconfig(libidn2)
 BuildRequires:	pkgconfig(liblzma)
 BuildRequires:	pkgconfig(libnghttp2)
 BuildRequires:	pkgconfig(liburing)
+BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(nettle)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(Qt63DQuickRender)
@@ -94,15 +98,21 @@ write custom disk images and format SD cards.
 
 %prep
 %autosetup -p1
+rm -rf .github .gitignore
+# Set the version
+sed -i 's/set(VERSION_STR "0.0.0-unknown")/set(VERSION_STR "%{version}")/g' src/cmake/GenerateVersion.cmake
+
 
 %build
 # Disabling the cmake options for timezone|regdb|capital_cities generation
 # also disables the use of the fallback files from the tarball, thus we have to
 # keep enabled options that attempt to download reasources it can never reach,
 # they will fail and use the files from the source tarball instead.
+#########################################
+# Add ldflags for libusb-1.0 de-vendoring
+export LDFLAGS="%{ldflags} -lusb-1.0"
 pushd src
 %cmake \
-	-DIMAGER_VERSION_STR=%{version} \
 	-DENABLE_CHECK_VERSION=OFF \
 	-DENABLE_TELEMETRY=OFF \
 	-G Ninja
