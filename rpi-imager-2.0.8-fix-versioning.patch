@@ -1,6 +1,6 @@
-diff -urN rpi-imager-2.0.7/src/cmake/GenerateVersion.cmake rpi-imager-2.0.7-fix-versioning/src/cmake/GenerateVersion.cmake
---- rpi-imager-2.0.7/src/cmake/GenerateVersion.cmake	2026-03-25 14:48:22.000000000 +0000
-+++ rpi-imager-2.0.7-fix-versioning/src/cmake/GenerateVersion.cmake	2026-03-27 18:56:26.139185253 +0000
+diff -urN rpi-imager-2.0.8/src/cmake/GenerateVersion.cmake rpi-imager-2.0.8-fix-versioning/src/cmake/GenerateVersion.cmake
+--- rpi-imager-2.0.8/src/cmake/GenerateVersion.cmake	2026-04-08 16:27:22.000000000 +0100
++++ rpi-imager-2.0.8-fix-versioning/src/cmake/GenerateVersion.cmake	2026-04-08 19:39:23.207332247 +0100
 @@ -6,24 +6,8 @@
  #   SOURCE_DIR       — repo root (for git describe)
  #   OUTPUT_DIR       — directory for generated files
