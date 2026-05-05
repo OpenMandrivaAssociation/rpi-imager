@@ -1,5 +1,5 @@
 Name:			rpi-imager
-Version:		2.0.8
+Version:		2.0.9
 Release:		1
 Summary:		Graphical user-interface to write disk images and format SD cards
 Group:			File tools
