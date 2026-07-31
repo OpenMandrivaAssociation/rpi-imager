@@ -1,5 +1,5 @@
 Name:			rpi-imager
-Version:		2.0.9
+Version:		2.0.10
 Release:		1
 Summary:		Graphical user-interface to write disk images and format SD cards
 Group:			File tools
@@ -20,10 +20,10 @@ Source0:		https://github.com/raspberrypi/rpi-imager/archive/v%{version}/%{name}-
 ##################################
 # NOTE Patch0 will need checked and refactored on each upstream release to ensure-
 # NOTE we can use our system libs and avoid using upstream forced vendored packages.
-Patch0:	rpi-imager-2.0.8-remove-vendoring.patch
+# dropped (no longer applies): Patch0:	rpi-imager-2.0.8-remove-vendoring.patch
 # This patches out upstream dirty versioning, use with sed line in prep to-
 # overwrite the string directly.
-Patch1:	rpi-imager-2.0.8-fix-versioning.patch
+# dropped (no longer applies): Patch1:	rpi-imager-2.0.8-fix-versioning.patch
 ##################################
 # NOTE Two weeks after patch submission upstream used an LLM on their repo to
 # NOTE absorb MR#1514 into their own patch without attribution!
@@ -31,7 +31,7 @@ Patch1:	rpi-imager-2.0.8-fix-versioning.patch
 # Patch1: rpi-imager-2.0.6-fix-broken-timezones.patch
 # Fix a missing import in WritingStep.qml causing a Qt exception for Non-attached object.
 # Patch submitted upstream: https://github.com/raspberrypi/rpi-imager/pull/1515
-Patch2:	rpi-imager-2.0.6-fix-missing-import.patch
+# dropped (no longer applies): Patch2:	rpi-imager-2.0.6-fix-missing-import.patch
 # NOTE Upstream closed MR#1515 without consideration due to nonsensesical-
 # NOTE reasons of not "attaching a bug report" even though the PR itself is
 # NOTE a bug report and a patch to fix a Qt runtime exception.
